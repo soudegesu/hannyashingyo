@@ -44,6 +44,8 @@ function gameSet() {
     started = false;
     flattenKana = [];
     var idnum = 0;
+
+    initStart();
     //問題文をテーブルを使って表示。各セルはID名「word＋数字」を付す
     var doc = document.createDocumentFragment();
     var table = document.createElement("table");
@@ -74,6 +76,12 @@ function gameSet() {
     container.textContent = null;
     container.appendChild(doc);
     
+}
+
+// 初期化して開始します
+function initStart() {
+  document.getElementById("title").style.display = "none";
+  document.getElementById("btn").innerHTML = "やり直す";
 }
 
 //キー入力を受け取る関数

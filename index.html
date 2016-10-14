@@ -7,8 +7,13 @@
     <meta name="description" content="html5,webaudioapi,javascript" />
     <style>
     #btn {
-      font-size: 4rem;
+      font-size: 3rem;
+      margin-top: 10px;
       padding: 1rem 2rem;
+    }
+    table {
+        margin-right : auto;
+        margin-left : auto;
     }
     </style>
     <!--
@@ -18,9 +23,21 @@
     <script src='./types.js'></script>
     </head>
     <body>
-        <div id="container">
+        <div style="text-align:center;">
+            <div>
+                <h1>般若心経</h1>
+            </div>
+            <div id="title" >
+                <img src="https://www.atpress.ne.jp/releases/33367/1_1.jpg" width="50%"/>
+            </div>
+            <div>
+                <div id="container" style="text-align:center;">
 
+                </div>
+            </div>
+            <div>
+                <button id='btn' onclick="gameSet()">写経を始める</button>
+            </div>
         </div>
-        <button id='btn' onclick="gameSet()">Start</button>
     </body>
 </html>
