@@ -44,6 +44,8 @@ function gameSet() {
     started = false;
     flattenKana = [];
     var idnum = 0;
+
+    initStart();
     //問題文をテーブルを使って表示。各セルはID名「word＋数字」を付す
     var doc = document.createDocumentFragment();
     var table = document.createElement("table");
@@ -76,6 +78,13 @@ function gameSet() {
     
 }
 
+// 初期化して開始します
+function initStart() {
+  document.getElementById("title").style.display = "none";
+  document.getElementById("finish").style.display = "none";
+  document.getElementById("btn").innerHTML = "やり直す";
+}
+
 //キー入力を受け取る関数
 function typeGame(evt) {
   
@@ -92,41 +101,15 @@ function typeGame(evt) {
     // 入力をチェックする
     checkAnswer(kc);
     
-    
-        
-    
-    
-
-    
-    //全文字入力したか確認
-    // if ( cnt < 200)
-    // {
-    //   //問題文の頭の一文字を切り取る
-    //   constant.hannhashingyo.
-    //   mondai = mondai.substring(1,mondai.Length);
-
-    //   //問題枠に表示する
-    //   document.getElementById("waku").innerHTML = mondai;
-    // }
-    // else if ( cnt == 200 ) {
-    //   //全文字入力していたら、終了時間を記録する
-    //   typEnd = new Date();
-      
-    //   //終了時間－開始時間で掛かったミリ秒を取得する
-    //   var keika = typEnd - typStart;
-      
-    //   //1000で割って「切捨て」、秒数を取得
-    //   var sec = Math.floor( keika/1000 );
-      
-    //   //1000で割った「余り(%で取得できる）」でミリ秒を取得
-    //   var msec = keika % 1000;
-      
-    //   //問題終了を告げる文字列を作成
-    //   var fin="GAME終了"
-      
-    //   //問題枠にゲーム終了を表示
-    //   document.getElementById("waku").innerHTML = fin;
-    // }
+    // 入力がすべて終了した場合、時計を止める
+    if(cnt === flattenKana.length) {
+      typEnd = new Date();
+      var keika = typEnd - typStart;
+      var sec = Math.floor(keika/1000);
+      document.getElementById("container").innerHTML = "";
+      document.getElementById("sec").innerHTML = sec;
+      document.getElementById("finish").style.display = "block";
+    }
   }
 }
 
@@ -173,7 +156,6 @@ function checkAnswer(kc) {
 
     if(partialMatchCnt) {
       input.push(ch);
-      console.log(input);
       return;
     // すべてがアンマッチの場合
     } else if(unmatchCnt === now.length) {
